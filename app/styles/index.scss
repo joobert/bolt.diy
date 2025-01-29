@@ -22,3 +22,12 @@ body {
   // --secondary-color: rgba(138, 43, 226, var(--gradient-opacity));
   // --accent-color: rgba(180, 170, 220, var(--gradient-opacity));
 }
+
+// Fix the chatbox position from creating a scrollbar on the landing page. Ensure the position remains the same when the workbench is open.
+#root ._BaseChat_15kx3_1 {
+  margin-top: -50px;
+}
+
+body:has(.z-workbench) ._BaseChat_15kx3_1 {
+  margin-top: 0px !important;
+}
