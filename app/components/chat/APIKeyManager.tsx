@@ -49,6 +49,11 @@ export const APIKeyManager: React.FC<APIKeyManagerProps> = ({ provider, apiKey, 
   }, [provider.name]);
 
   const checkEnvApiKey = useCallback(async () => {
+    // Always set to isSet if the provider is Ollama
+    if (provider.name === 'Ollama') {
+      setIsEnvKeySet(true);
+      return;
+    }
     // Check cache first
     if (providerEnvKeyStatusCache[provider.name] !== undefined) {
       setIsEnvKeySet(providerEnvKeyStatusCache[provider.name]);
@@ -113,7 +118,10 @@ export const APIKeyManager: React.FC<APIKeyManagerProps> = ({ provider, apiKey, 
         </div>
       </div>
 
-      <div className="flex items-center gap-2 shrink-0">
+      <div
+  className="flex items-center gap-2 shrink-0"
+  style={{ display: isEnvKeySet ? 'none' : 'flex' }}
+>
         {isEditing ? (
           <div className="flex items-center gap-2">
             <input

@@ -1,4 +1,5 @@
 import { getSystemPrompt } from './prompts/prompts';
+import { getAdvancedPrompt } from './prompts/advanced';
 import optimized from './prompts/optimized';
 
 export interface PromptOptions {
@@ -20,6 +21,11 @@ export class PromptLibrary {
       label: 'Default Prompt',
       description: 'This is the battle tested default system prompt',
       get: (options) => getSystemPrompt(options.cwd),
+    },
+    advanced: {
+      label: 'Advanced Prompt (custom)',
+      description: 'An advanced prompt with more detailed information',
+      get: (options) => getAdvancedPrompt(options.cwd),
     },
     optimized: {
       label: 'Optimized Prompt (experimental)',
